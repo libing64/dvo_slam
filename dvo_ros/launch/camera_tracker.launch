@@ -1,0 +1,15 @@
+<launch>
+	<node pkg="dvo_ros" type="camera_tracker" name="dvo_slam" output="screen" >
+		<remap from="/camera/depth_registered/camera_info" to="/camera/depth/camera_info" />
+		<remap from="/camera/depth_registered/image_rect_raw" to="/camera/depth/image" />
+		<remap from="/camera/rgb/camera_info" to="/camera/rgb/camera_info" />
+		<remap from="/camera/rgb/image_rect" to="/camera/rgb/image_color" />
+	</node>
+
+   <arg name="bagfile" default="/media/ssd/rosbag/rgbd/rgbd_dataset_freiburg2_xyz.bag" />
+   <!-- <node pkg="rosbag" type="play" name="rosbag" args="$(arg bagfile)" /> -->
+
+   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find dvo_ros)/rviz_cfg/camera_tracker.rviz" />
+   
+   <!-- <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" args="/camera_tracker" /> -->
+</launch>
