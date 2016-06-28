@@ -1,5 +1,5 @@
 <launch>
-  <arg name="dataset" default="$(env PWD)" />
+  <arg name="dataset" default="/media/ssd/rosbag/dvo/rgbd_dataset_freiburg1_xyz" />
   <arg name="rgbdpair_file" default="$(arg dataset)/assoc.txt" />
   <arg name="groundtruth_file" default="$(arg dataset)/groundtruth.txt" />
 
@@ -40,4 +40,6 @@
     <rosparam command="load" file="$(arg config_file)" />
     <rosparam command="load" file="$(arg slam_config_file)" />
   </node>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find dvo_benchmark)/rviz_cfg/dvo_benchmark.rviz" />
 </launch>
